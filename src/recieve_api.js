@@ -35,6 +35,7 @@ function getCurrentData(json){
     const pressure = currentData.pressure;
     const cloudcover = currentData.cloudcover;
     const currentTime = currentData.datetime;
+    const conditions = currentData.conditions;
 
     return {
         temp,
@@ -44,6 +45,7 @@ function getCurrentData(json){
         pressure,
         cloudcover,
         currentTime,
+        conditions,
     }
 }
 
@@ -61,7 +63,7 @@ function getHoursData(json){
                 }
                 if(afterCurrent && daysCount < HOURS_IN_DAY){
                     const datetime = hour.datetime;
-                    const icon = hour.icon;
+                    const icon = getIconURL(hour.icon);
                     const temp = hour.temp;
                     processedHours.push({
                         datetime,
@@ -91,7 +93,7 @@ function getDaysData(json){
     let processedDays = [];
     daysData.forEach(day => {
         const datetime = day.datetime;
-        const icon = day.icon;
+        const icon = getIconURL(day.icon);
         const tempmax = day.tempmax;
         const tempmin = day.tempmin;
         const hours = day.hours;
@@ -115,4 +117,8 @@ function getSunData(json){
         sunrise,
         sunset,
     }
+}
+
+function getIconURL(icon){
+    return `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/refs/heads/main/SVG/3rd%20Set%20-%20Color/${icon}.svg`
 }

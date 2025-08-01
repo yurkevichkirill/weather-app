@@ -20,7 +20,7 @@ body{
                          
 }
 
-.main > div{
+.main > div, .day-params > p, .temp-main-div > p{
     border: 1px solid black;
 }
 
@@ -42,6 +42,8 @@ body{
 
 .temp-main-div{
     grid-area: temp-main-div;
+    display: flex;
+    flex-direction: column;
 }
 
 .icon-main-div{
@@ -58,6 +60,9 @@ body{
 
 .day-params{
     grid-area: day-params;
+    display: grid;
+    grid-template-areas: "dew humidity"
+                         "pressure cloudcover";
 }
 
 .next-days{
@@ -70,4 +75,20 @@ body{
 
 .footer{
     grid-area: footer;
+}
+
+.dew{
+    grid-area: dew;
+}
+
+.humidity{
+    grid-area: humidity;
+}
+
+.pressure{
+    grid-area: pressure;
+}
+
+.cloudcover{
+    grid-area: cloudcover;
 }
