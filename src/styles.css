@@ -1,0 +1,73 @@
+body{
+    background-color: rgb(219, 219, 219);
+    display: flex;
+    justify-content: center;
+}
+
+.main{
+    width: 50vw;
+    background-color: white;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "header header header header"
+                         "left-sidebar search-head search-head right-sidebar"
+                         "left-sidebar temp-main-div icon-main-div right-sidebar"
+                         "left-sidebar cur-day-description cur-day-description right-sidebar"
+                         "left-sidebar day-info day-info right-sidebar"
+                         "left-sidebar day-params next-days right-sidebar"
+                         "left-sidebar sun-live sun-live right-sidebar"
+                         "footer footer footer footer";
+                         
+}
+
+.main > div{
+    border: 1px solid black;
+}
+
+.header{
+    grid-area: header;
+}
+
+.left-sidebar{
+    grid-area: left-sidebar;
+}
+
+.right-sidebar{
+    grid-area: right-sidebar;
+}
+
+.search-head{
+    grid-area: search-head;
+}
+
+.temp-main-div{
+    grid-area: temp-main-div;
+}
+
+.icon-main-div{
+    grid-area: icon-main-div;
+}
+
+.cur-day-description{
+    grid-area: cur-day-description;
+}
+
+.day-info{
+    grid-area: day-info;
+}
+
+.day-params{
+    grid-area: day-params;
+}
+
+.next-days{
+    grid-area: next-days;
+}
+
+.sun-live{
+    grid-area: sun-live;
+}
+
+.footer{
+    grid-area: footer;
+}

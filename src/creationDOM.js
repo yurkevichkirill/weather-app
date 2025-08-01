@@ -1,26 +1,8 @@
 import { getWeatherJSON } from "./recieve_api";
 
 export function createDOM(){
-    const main = document.querySelector('.main');
-
-    const form = document.createElement('form');
-    main.append(form);
-
-    const label = document.createElement('label');
-    label.textContent = 'City';
-    label.for = 'city';
-
-    const input = document.createElement('input');
-    input.id = 'city';
-    input.name = 'city';
-
-    const submit = document.createElement('button');
-    submit.textContent = 'Submit';
-    submit.class = 'submit';
-
+    const form = document.querySelector('form');
     submitHandler(form);
-
-    form.append(label, input, submit);
 }
 
 function submitHandler(form){
@@ -34,6 +16,7 @@ function getInputValue(){
     return document.querySelector('input').value;
 }
 
-function printWeather(city){
-    console.log(getWeatherJSON(city));
+async function printWeather(city){
+    const requiredObj = await getWeatherJSON();
+    console.log(requiredObj);
 }
