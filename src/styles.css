@@ -1,13 +1,11 @@
 body{
     background-color: rgb(219, 219, 219);
     display: flex;
-    justify-content: center;
 }
 
 .main{
-    width: 50vw;
+    width: 100%;
     background-color: white;
-    height: 100vh;
     display: grid;
     grid-template-areas: "header header header header"
                          "left-sidebar search-head search-head right-sidebar"
@@ -56,6 +54,8 @@ body{
 
 .day-info{
     grid-area: day-info;
+    display: flex;
+    gap: 2%;
 }
 
 .day-params{
@@ -67,6 +67,8 @@ body{
 
 .next-days{
     grid-area: next-days;
+    display: flex;
+    flex-direction: column;
 }
 
 .sun-live{
@@ -91,4 +93,19 @@ body{
 
 .cloudcover{
     grid-area: cloudcover;
+}
+
+.day-div{
+    padding-left: 2%;
+    display: flex;
+    gap: 5%;
+}
+
+.day-icon{
+    width: 10%;
+}
+
+.hour-div{
+    display: flex;
+    flex-direction: column;
 }

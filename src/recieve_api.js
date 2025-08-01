@@ -1,7 +1,7 @@
+import { compareDate } from "./date";
+
 const API_KEY = '3W7DYE4QXB8Z87WMY2SA5973G';
 const HOURS_IN_DAY = 24;
-const FIRST_TIME_COUNT = 2;
-const TIME_COUNT = 8;
 
 export async function getWeatherJSON(city = 'brest', unit = 'metric'){
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unit}&key=${API_KEY}&contentType=json`, {mode: 'cors'});
@@ -77,15 +77,6 @@ function getHoursData(json){
     }
 
     return processedHours;
-}
-
-function compareDate(date1, date2){
-    const date1Arr = date1.split('');
-    date1Arr.splice(FIRST_TIME_COUNT, TIME_COUNT - FIRST_TIME_COUNT);
-    const date2Arr = date2.split('');
-    date2Arr.splice(FIRST_TIME_COUNT, TIME_COUNT - FIRST_TIME_COUNT);
-
-    return date1Arr.join('') === date2Arr.join('');
 }
 
 function getDaysData(json){

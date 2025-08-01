@@ -1,3 +1,4 @@
+import { getHourTime, getMonthDay } from "./date";
 import { getWeatherJSON } from "./recieve_api";
 
 export function createDOM(){
@@ -25,6 +26,8 @@ async function fillOutDOM(city){
     fillIcon(weather);
     fillDayDescription(weather);
     fillDayParams(weather);
+    fillNextDays(weather);
+    fillHours(weather);
 }
 
 function fillMainTemp(weather){
@@ -58,6 +61,64 @@ function fillDayParams(weather){
     pressure.textContent = `Pressure ${weather.current.pressure} mbar`;
     const cloudcover = document.querySelector('.cloudcover');
     cloudcover.textContent = `Cloudcover ${weather.current.cloudcover}%`;
+}
+
+function fillNextDays(weather){
+    const nextDays = document.querySelector('.next-days');
+    weather.days.forEach(day => {
+        const dayDiv = createDayDOM(day);
+        nextDays.append(dayDiv);
+    });
+}
+
+function createDayDOM(day){
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'day-div';
+
+    const date = document.createElement('p');
+    date.className = 'day-date';
+    date.textContent = getMonthDay(day.datetime);
+
+    const icon = document.createElement('img');
+    icon.className = 'day-icon';
+    icon.src = day.icon;
+
+    const maxmin = document.createElement('p');
+    maxmin.className = 'day-maxmin';
+    maxmin.textContent = `${day.tempmax} / ${day.tempmin}`;
+
+    dayDiv.append(date, icon, maxmin);
+
+    return dayDiv;
+}
+
+function fillHours(weather){
+    const hours = document.querySelector('.day-info');
+    weather.hours.forEach((hour) => {
+        const hourDiv = createHourDOM(hour);
+        hours.append(hourDiv);
+    })
+}
+
+function createHourDOM(hour){
+    const hourDiv = document.createElement('div');
+    hourDiv.className = 'hour-div';
+
+    const time = document.createElement('p');
+    time.className = 'hour-time';
+    time.textContent = getHourTime(hour.datetime);
+
+    const icon = document.createElement('img');
+    icon.className = 'hour-icon';
+    icon.src = hour.icon;
+
+    const temp = document.createElement('p');
+    temp.className = 'hour-temp';
+    temp.textContent = hour.temp;
+
+    hourDiv.append(time, icon, temp);
+
+    return hourDiv;
 }
 
 async function printWeather(city){
