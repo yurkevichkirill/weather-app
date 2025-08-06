@@ -15,7 +15,7 @@ body{
                          "left-sidebar day-params next-days right-sidebar"
                          "left-sidebar sun-live sun-live right-sidebar"
                          "footer footer footer footer";
-                         
+    grid-template-columns: 1fr 8fr 4fr 1fr;
 }
 
 .main > div, .day-params > p, .temp-main-div > p{
@@ -55,7 +55,9 @@ body{
 .day-info{
     grid-area: day-info;
     display: flex;
-    gap: 2%;
+    justify-content: space-between;
+    gap: min(5px, 5%);
+    padding: 0 1% 0 1%;
 }
 
 .day-params{
@@ -108,4 +110,9 @@ body{
 .hour-div{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hour-icon{
 }
