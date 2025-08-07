@@ -1,3 +1,12 @@
+@font-face{
+    font-family: 'Rosaline';
+    src:
+      url("fonts/Rosaline-Regular.woff2") format('woff2'),
+      url("fonts/Rosaline-Regular.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
     background-color: rgb(241, 241, 241);
     display: flex;
@@ -10,8 +19,8 @@ p{
 }
 
 .main{
-    min-width: 1300px;
-    max-width: 1600px;
+    min-width: 1400px;
+    max-width: 1700px;
     background-color: white;
     display: grid;
     grid-template-areas: "header header header header"
@@ -23,12 +32,14 @@ p{
                          "left-sidebar sun-live sun-live right-sidebar"
                          "footer footer footer footer";
     grid-template-columns: 1fr 6fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 3fr 1fr 2fr 10fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr 1fr 2fr 10fr 6fr 1fr;
+
+    border-radius: 5px;
 }
 
-.main > div, .day-params > p, .temp-main-div > p{
+/* .main > div, .day-params > p, .temp-main-div > p{
     border: 1px solid black;
-}
+} */
 
 .header{
     grid-area: header;
@@ -91,10 +102,14 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Rosaline';
 }
 
 .sun-live{
     grid-area: sun-live;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
 }
 
 .footer{
@@ -119,14 +134,14 @@ p{
 
 .day-div{
     height: min(40px, 4vh);
-    padding-left: 2%;
+    padding-left: 30%;
     display: flex;
     gap: 5%;
     align-items: center;
 }
 
 .day-icon{
-    width: 10%;
+    width: 15%;
 }
 
 .hour-div{
@@ -134,6 +149,7 @@ p{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Rosaline';
 }
 
 .hour-icon{
@@ -157,10 +173,12 @@ p{
 
 .temp-main-div > p {
     font-size: 3em;
+    font-family: 'Rosaline';
 }
 
 .cur-day-description > p {
     font-size: 2em;
+    font-family: 'Rosaline';
 }
 
 .day-params > div{
@@ -170,6 +188,7 @@ p{
     align-items: center;
     justify-content: center;
     gap: 2em;
+    font-family: 'Rosaline';
 }
 
 .day-params p:first-child{
@@ -184,4 +203,32 @@ p{
     font-size: 0.2em;
 }
 
+.day-params .dew-val{
+    display: flex;
+}
+
+.day-params .dew-val .unit{
+    padding-top: 20%;
+}
+
+.sun-live p{
+    font-size: 2em;
+    font-family: 'Rosaline';
+}
+
+.sunrise-img, .sunset-img{
+    width: 40%;
+}
+
+.sunrise{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.sunset{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
 

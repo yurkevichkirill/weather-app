@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Rosaline';
+    src: url('Rosaline-Regular.woff2') format('woff2'),
+        url('Rosaline-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

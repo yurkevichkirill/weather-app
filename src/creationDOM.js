@@ -1,6 +1,9 @@
 import { getHourTime, getMonthDay } from "./date";
 import { getWeatherJSON } from "./recieve_api";
 
+import sunriseURL from "./images/sunrise.svg";
+import sunsetURL from "./images/sunset.svg";
+
 export function createDOM(){
     const form = document.querySelector('form');
     submitHandler(form);
@@ -28,6 +31,7 @@ async function fillOutDOM(city){
     fillDayParams(weather);
     fillNextDays(weather);
     fillHours(weather);
+    fillSunLive(weather);
 }
 
 function fillMainTemp(weather){
@@ -56,7 +60,11 @@ function fillDayParams(weather){
     const dewName = document.querySelector('.dew-name');
     dewName.textContent = 'Dew';
     const dewVal = document.querySelector('.dew-val');
-    dewVal.textContent = weather.current.dew + '°';
+    dewVal.textContent = weather.current.dew;
+    const dewUnit = document.createElement('span');
+    dewUnit.className = 'unit';
+    dewUnit.textContent = '°';
+    dewVal.append(dewUnit);
 
     const humidityName = document.querySelector('.humidity-name');
     humidityName.textContent = 'Humidity';
@@ -142,6 +150,27 @@ function createHourDOM(hour){
     hourDiv.append(time, icon, temp);
 
     return hourDiv;
+}
+
+function fillSunLive(weather){
+    const sunriseTitle = document.querySelector('.sunrise .title');
+    sunriseTitle.textContent = 'Sunrise';
+    const sunriseTime = document.querySelector('.sunrise .time');
+    sunriseTime.textContent = weather.sun.sunrise;
+    const sunrise = document.createElement('img');
+    sunrise.className = 'sunrise-img';
+    sunrise.src = sunriseURL;
+    sunriseTitle.parentNode.insertBefore(sunrise, sunriseTitle);
+
+
+    const sunsetTitle = document.querySelector('.sunset .title');
+    sunsetTitle.textContent = 'Sunset';
+    const sunsetTime = document.querySelector('.sunset .time');
+    sunsetTime.textContent = weather.sun.sunset;
+    const sunset = document.createElement('img');
+    sunset.className = 'sunset-img';
+    sunset.src = sunsetURL;
+    sunsetTitle.parentNode.insertBefore(sunset, sunsetTitle);
 }
 
 async function printWeather(city){
