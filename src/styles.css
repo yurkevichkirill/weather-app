@@ -1,10 +1,17 @@
 body{
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(241, 241, 241);
     display: flex;
+    justify-content: center;
+}
+
+p{
+    padding: 0;
+    margin: 0;
 }
 
 .main{
-    width: 100%;
+    min-width: 1300px;
+    max-width: 1600px;
     background-color: white;
     display: grid;
     grid-template-areas: "header header header header"
@@ -15,7 +22,8 @@ body{
                          "left-sidebar day-params next-days right-sidebar"
                          "left-sidebar sun-live sun-live right-sidebar"
                          "footer footer footer footer";
-    grid-template-columns: 1fr 8fr 4fr 1fr;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr 1fr 2fr 10fr 1fr 1fr;
 }
 
 .main > div, .day-params > p, .temp-main-div > p{
@@ -36,28 +44,39 @@ body{
 
 .search-head{
     grid-area: search-head;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .temp-main-div{
     grid-area: temp-main-div;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 1%;
 }
 
 .icon-main-div{
     grid-area: icon-main-div;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cur-day-description{
     grid-area: cur-day-description;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .day-info{
     grid-area: day-info;
     display: flex;
     justify-content: space-between;
-    gap: min(5px, 5%);
-    padding: 0 1% 0 1%;
+    /* gap: min(100px, 1vw); */
+    padding: 1%;
 }
 
 .day-params{
@@ -71,6 +90,7 @@ body{
     grid-area: next-days;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .sun-live{
@@ -98,9 +118,11 @@ body{
 }
 
 .day-div{
+    height: min(40px, 4vh);
     padding-left: 2%;
     display: flex;
     gap: 5%;
+    align-items: center;
 }
 
 .day-icon{
@@ -116,3 +138,50 @@ body{
 
 .hour-icon{
 }
+
+.weather-icon{
+    width: 90%;
+}
+
+.day-date{
+    width: 18px;
+}
+
+#city{
+    font-size: 1.5em;
+}
+
+.submit{
+    font-size: 1.5em;
+}
+
+.temp-main-div > p {
+    font-size: 3em;
+}
+
+.cur-day-description > p {
+    font-size: 2em;
+}
+
+.day-params > div{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.day-params p:first-child{
+    font-size: 2em;
+}
+
+.day-params p:last-child{
+    font-size: 10em;
+}
+
+.day-params .unit{
+    font-size: 0.2em;
+}
+
+

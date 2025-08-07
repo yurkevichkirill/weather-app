@@ -10,7 +10,7 @@ function submitHandler(form){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const city = getInputValue();
-        //printWeather(city);
+        printWeather(city);
         fillOutDOM(city);
     });
 }
@@ -48,19 +48,42 @@ function fillIcon(weather){
 }
 
 function fillDayDescription(weather){
-    const day = document.querySelector('.cur-day-description');
+    const day = document.querySelector('.cur-day-description-p');
     day.textContent = `${weather.days[0].tempmax}° / ${weather.days[0].tempmin}° Feels like ${weather.current.feelslike}°`
 }
 
 function fillDayParams(weather){
-    const dew = document.querySelector('.dew');
-    dew.textContent = `Dew ${weather.current.dew}°`;
-    const humidity = document.querySelector('.humidity');
-    humidity.textContent = `Humidity ${weather.current.humidity}%`;
-    const pressure = document.querySelector('.pressure');
-    pressure.textContent = `Pressure ${weather.current.pressure} mbar`;
-    const cloudcover = document.querySelector('.cloudcover');
-    cloudcover.textContent = `Cloudcover ${weather.current.cloudcover}%`;
+    const dewName = document.querySelector('.dew-name');
+    dewName.textContent = 'Dew';
+    const dewVal = document.querySelector('.dew-val');
+    dewVal.textContent = weather.current.dew + '°';
+
+    const humidityName = document.querySelector('.humidity-name');
+    humidityName.textContent = 'Humidity';
+    const humidityVal = document.querySelector('.humidity-val');
+    humidityVal.textContent = weather.current.humidity;
+    const humidityUnit = document.createElement('span');
+    humidityUnit.className = 'unit';
+    humidityUnit.textContent = '%';
+    humidityVal.append(humidityUnit);
+
+    const pressureName = document.querySelector('.pressure-name');
+    pressureName.textContent = 'Pressure';
+    const pressureVal = document.querySelector('.pressure-val');
+    pressureVal.textContent = weather.current.pressure;
+    const pressureUnit = document.createElement('span');
+    pressureUnit.className = 'unit';
+    pressureUnit.textContent = 'mbar';
+    pressureVal.append(pressureUnit);
+
+    const cloudcoverName = document.querySelector('.cloudcover-name');
+    cloudcoverName.textContent = 'Cloudcover';
+    const cloudcoverVal = document.querySelector('.cloudcover-val');
+    cloudcoverVal.textContent = weather.current.cloudcover;
+    const cloudcoverUnit = document.createElement('span');
+    cloudcoverUnit.className = 'unit';
+    cloudcoverUnit.textContent = '%';
+    cloudcoverVal.append(cloudcoverUnit);
 }
 
 function fillNextDays(weather){
@@ -85,7 +108,7 @@ function createDayDOM(day){
 
     const maxmin = document.createElement('p');
     maxmin.className = 'day-maxmin';
-    maxmin.textContent = `${day.tempmax} / ${day.tempmin}`;
+    maxmin.textContent = `${day.tempmax}° / ${day.tempmin}°`;
 
     dayDiv.append(date, icon, maxmin);
 
@@ -114,7 +137,7 @@ function createHourDOM(hour){
 
     const temp = document.createElement('p');
     temp.className = 'hour-temp';
-    temp.textContent = hour.temp;
+    temp.textContent = hour.temp + '°';
 
     hourDiv.append(time, icon, temp);
 
