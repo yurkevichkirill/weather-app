@@ -95,6 +95,8 @@ p{
     display: grid;
     grid-template-areas: "dew humidity"
                          "pressure cloudcover";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .next-days{
@@ -118,18 +120,82 @@ p{
 
 .dew{
     grid-area: dew;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dew-full{
+    position: relative;
+}
+
+.dew-img{
+    position: absolute;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
 }
 
 .humidity{
     grid-area: humidity;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.humidity-full{
+    position: relative;
+}
+
+.humidity-img{
+    position: absolute;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+} 
 
 .pressure{
     grid-area: pressure;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pressure-full{
+    position: relative;
+}
+
+.pressure-img{
+    position: absolute;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
 }
 
 .cloudcover{
     grid-area: cloudcover;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cloudcover-full{
+    position: relative;
+}
+
+.cloudcover-img{
+    position: absolute;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
 }
 
 .day-div{
