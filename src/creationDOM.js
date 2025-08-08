@@ -3,6 +3,11 @@ import { getWeatherJSON } from "./recieve_api";
 
 import sunriseURL from "./images/sunrise.svg";
 import sunsetURL from "./images/sunset.svg";
+import rainURL from "./images/rain.gif";
+import humidityURL from "./images/humidity.gif";
+import skyURL from "./images/sky.gif";
+import cloudsURL from "./images/clouds.gif";
+import sunliveURL from "./images/sun_live.jpeg";
 
 export function createDOM(){
     const form = document.querySelector('form');
@@ -13,7 +18,6 @@ function submitHandler(form){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const city = getInputValue();
-        printWeather(city);
         fillOutDOM(city);
     });
 }
@@ -22,16 +26,21 @@ function getInputValue(){
     return document.querySelector('input').value;
 }
 
-async function fillOutDOM(city){
-    const weather = await getWeatherJSON(city);
-    console.log(weather);
-    fillMainTemp(weather);
-    fillIcon(weather);
-    fillDayDescription(weather);
-    fillDayParams(weather);
-    fillNextDays(weather);
-    fillHours(weather);
-    fillSunLive(weather);
+export async function fillOutDOM(city){
+    try {
+        clearDOM();
+        const weather = await getWeatherJSON(city);
+        console.log(weather);
+        fillMainTemp(weather);
+        fillIcon(weather);
+        fillDayDescription(weather);
+        fillDayParams(weather);
+        fillNextDays(weather);
+        fillHours(weather);
+        fillSunLive(weather);
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 function fillMainTemp(weather){
@@ -171,6 +180,73 @@ function fillSunLive(weather){
     sunset.className = 'sunset-img';
     sunset.src = sunsetURL;
     sunsetTitle.parentNode.append(sunset);
+}
+
+function clearDOM(){
+    document.querySelector('.main').innerHTML = `
+    <div class="header"></div>
+        <div class="left-sidebar"></div>
+        <div class="right-sidebar"></div>
+        <div class="search-head">
+            <form action="">
+                <input type="text" id="city" name="city">
+                <button class="submit">Submit</button>
+            </form>
+        </div>
+        <div class="temp-main-div">
+            <p class="address"></p>
+            <p class="temp"></p>
+            <p class="conditions"></0>
+        </div>
+        <div class="icon-main-div"></div>
+        <div class="cur-day-description"></div>
+        <div class="day-info"></div>
+        <div class="day-params">
+            <div class="dew-full">
+                <div class="dew">
+                    <p class="dew-name"></p>
+                    <p class="dew-val"></p>
+                </div>
+                <img src=${rainURL} alt="Dew" class="dew-img">
+            </div>
+            <div class="humidity-full">
+                <div class="humidity">
+                    <p class="humidity-name"></p>
+                    <p class="humidity-val"></p>
+                </div>
+                <img src=${humidityURL} alt="Humidity" class="humidity-img">
+            </div>
+            <div class="pressure-full">
+                <div class="pressure">
+                    <p class="pressure-name"></p>
+                    <p class="pressure-val"></p>
+                </div>
+                <img src=${skyURL} alt="Pressure" class="pressure-img">
+            </div>
+            <div class="cloudcover-full">
+                <div class="cloudcover">
+                    <p class="cloudcover-name"></p>
+                    <p class="cloudcover-val"></p>
+                </div>
+                <img src=${cloudsURL} alt="Cloudcover" class="cloudcover-img">
+            </div>
+        </div>
+        <div class="next-days"></div>
+        <div class="sun-live">
+            <div class="sun">
+                <div class="sunrise">
+                    <p class="title"></p>
+                    <p class="time"></p>
+                </div>
+                <div class="sunset">
+                    <p class="title"></p>
+                    <p class="time"></p>
+                </div>
+            </div>
+            <img src=${sunliveURL} alt="Sun Live" class="sun-live-img">
+        </div>
+        <div class="footer"></div>
+    `;
 }
 
 async function printWeather(city){

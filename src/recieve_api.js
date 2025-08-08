@@ -4,10 +4,14 @@ const API_KEY = '3W7DYE4QXB8Z87WMY2SA5973G';
 const HOURS_IN_DAY = 24;
 
 export async function getWeatherJSON(city = 'brest', unit = 'metric'){
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unit}&key=${API_KEY}&contentType=json`, {mode: 'cors'});
-    const responseJSON = await response.json();
+    try {
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unit}&key=${API_KEY}&contentType=json`, {mode: 'cors'});
+        const responseJSON = await response.json();
 
-    return processJSON(responseJSON);
+        return processJSON(responseJSON);
+    } catch(error){
+        console.log(error);
+    }
 }
 
 function processJSON(json){
