@@ -1,38 +1,24 @@
 const ERROR_MESSAGE = 'City is not found';
+const  DEFAULT_CITY = 'brest';
+const DEFAULT_UNIT = 'metric';
 
 import { getHourTime, getMonthDay } from "./date";
 import { getWeatherJSON } from "./recieve_api";
-
-import rainURL from "./images/rain.gif";
-import humidityURL from "./images/humidity.gif";
-import skyURL from "./images/sky.gif";
-import cloudsURL from "./images/clouds.gif";
-import sunliveURL from "./images/sun_live.jpeg";
 import { handleInput, showServerError } from "./error-handle";
 
 export function createDOM(){
     handleInput();
-    // const form = document.querySelector('form');
-    // submitHandler(form);
+    handleToggle()
 }
-
-// function submitHandler(form){
-//     form.addEventListener('submit', (event) => {
-//         event.preventDefault();
-//         const city = getInputValue();
-//         fillOutDOM(city);
-//     });
-// }
 
 export function getInputValue(){
     return document.querySelector('input').value;
 }
 
-export async function fillOutDOM(city){
+export async function fillOutDOM(city = DEFAULT_CITY, unit = DEFAULT_UNIT){
     try {
-        const weather = await getWeatherJSON(city);
+        const weather = await getWeatherJSON(city, unit);
         console.log(weather);
-        //clearDOM();
         fillMainTemp(weather);
         fillIcon(weather);
         fillDayDescription(weather);
@@ -182,79 +168,36 @@ function fillSunLive(weather){
     sunsetTime.textContent = weather.sun.sunset;
 }
 
-function clearDOM(){
-    document.querySelector('.main').innerHTML = `
-    <div class="header"></div>
-        <div class="left-sidebar"></div>
-        <div class="right-sidebar"></div>
-        <div class="search-head">
-            <form action="">
-                <p>
-                    <label for="city">
-                        <input type="text" id="city" name="city" required>
-                        <span class="error" aria-live="polite"></span>
-                    </label>
-                </p>
-                <button class="submit">Submit</button>
-            </form>
-        </div>
-        <div class="temp-main-div">
-            <p class="address"></p>
-            <p class="temp"></p>
-            <p class="conditions"></0>
-        </div>
-        <div class="icon-main-div"></div>
-        <div class="cur-day-description"></div>
-        <div class="day-info"></div>
-        <div class="day-params">
-            <div class="dew-full">
-                <div class="dew">
-                    <p class="dew-name"></p>
-                    <p class="dew-val"></p>
-                </div>
-                <img src=${rainURL} alt="Dew" class="dew-img">
-            </div>
-            <div class="humidity-full">
-                <div class="humidity">
-                    <p class="humidity-name"></p>
-                    <p class="humidity-val"></p>
-                </div>
-                <img src=${humidityURL} alt="Humidity" class="humidity-img">
-            </div>
-            <div class="pressure-full">
-                <div class="pressure">
-                    <p class="pressure-name"></p>
-                    <p class="pressure-val"></p>
-                </div>
-                <img src=${skyURL} alt="Pressure" class="pressure-img">
-            </div>
-            <div class="cloudcover-full">
-                <div class="cloudcover">
-                    <p class="cloudcover-name"></p>
-                    <p class="cloudcover-val"></p>
-                </div>
-                <img src=${cloudsURL} alt="Cloudcover" class="cloudcover-img">
-            </div>
-        </div>
-        <div class="next-days"></div>
-        <div class="sun-live">
-            <div class="sun">
-                <div class="sunrise">
-                    <p class="title"></p>
-                    <p class="time"></p>
-                </div>
-                <div class="sunset">
-                    <p class="title"></p>
-                    <p class="time"></p>
-                </div>
-            </div>
-            <img src=${sunliveURL} alt="Sun Live" class="sun-live-img">
-        </div>
-        <div class="footer"></div>
-    `;
+function handleToggle(){
+    const switchEl = document.querySelector('.switch > input');
+    switchEl.addEventListener('change', () => {
+        const currentCity = document.querySelector('.address').textContent;
+        if(switchEl.checked){
+            fillOutDOM(currentCity, 'us');
+            switchMetricColor();
+            switchUsColor();
+        } else{
+            fillOutDOM(currentCity, 'metric');
+            switchMetricColor();
+            switchUsColor();
+        }
+    });
 }
 
-async function printWeather(city){
-    const requiredObj = await getWeatherJSON(city);
-    console.log(requiredObj);
+function switchUsColor(){
+    const us = document.querySelector('.us');
+    if(us.classList.contains('blue')){
+        us.classList.remove('blue');
+    } else {
+        us.classList.add('blue');
+    }
+}
+
+function switchMetricColor(){
+    const metric = document.querySelector('.metric');
+    if(metric.classList.contains('green')){
+        metric.classList.remove('green');
+    } else {
+        metric.classList.add('green');
+    }
 }

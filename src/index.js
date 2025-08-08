@@ -1,7 +1,6 @@
-const DEFAULT_CITY = 'brest';
-
 import { createDOM, fillOutDOM } from "./creationDOM";
 import "./styles.css";
+import "./toggle.css"
 
-fillOutDOM(DEFAULT_CITY);
+fillOutDOM();
 createDOM();

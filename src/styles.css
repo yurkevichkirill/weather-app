@@ -55,6 +55,7 @@ p{
 }
 
 .search-head{
+    position: relative;
     grid-area: search-head;
     display: flex;
     justify-content: center;
