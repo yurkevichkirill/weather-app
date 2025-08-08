@@ -52,7 +52,7 @@ function fillIcon(weather){
 }
 
 function fillDayDescription(weather){
-    const day = document.querySelector('.cur-day-description-p');
+    const day = document.querySelector('.cur-day-description');
     day.textContent = `${weather.days[0].tempmax}° / ${weather.days[0].tempmin}° Feels like ${weather.current.feelslike}°`
 }
 
@@ -160,7 +160,7 @@ function fillSunLive(weather){
     const sunrise = document.createElement('img');
     sunrise.className = 'sunrise-img';
     sunrise.src = sunriseURL;
-    sunriseTitle.parentNode.insertBefore(sunrise, sunriseTitle);
+    sunriseTitle.parentNode.append(sunrise);
 
 
     const sunsetTitle = document.querySelector('.sunset .title');
@@ -170,7 +170,7 @@ function fillSunLive(weather){
     const sunset = document.createElement('img');
     sunset.className = 'sunset-img';
     sunset.src = sunsetURL;
-    sunsetTitle.parentNode.insertBefore(sunset, sunsetTitle);
+    sunsetTitle.parentNode.append(sunset);
 }
 
 async function printWeather(city){
