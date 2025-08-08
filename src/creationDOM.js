@@ -27,7 +27,7 @@ export async function fillOutDOM(city = DEFAULT_CITY, unit = DEFAULT_UNIT){
         fillHours(weather);
         fillSunLive(weather);
     } catch(error) {
-        showServerError(ERROR_MESSAGE);
+        createErrorScreen();
     }
 }
 

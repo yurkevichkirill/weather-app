@@ -5,7 +5,7 @@ const HOURS_IN_DAY = 24;
 
 export async function getWeatherJSON(city = 'brest', unit = 'metric'){
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unit}&key=${API_KEY}&contentType=json`, {mode: 'cors'});
-    if(response.status === 200){        
+    if(response.status === 200){ 
         const responseJSON = await response.json();
         return processJSON(responseJSON);
     }

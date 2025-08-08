@@ -19,7 +19,8 @@ p{
 }
 
 .main{
-    min-width: 1400px;
+    width: 100%;
+    min-width: 370px;
     max-width: 1700px;
     background-color: white;
     display: grid;
@@ -37,10 +38,6 @@ p{
 
     border-radius: 5px;
 }
-
-/* .main > div, .day-params > p, .temp-main-div > p{
-    border: 1px solid black;
-} */
 
 .header{
     grid-area: header;
@@ -88,7 +85,6 @@ p{
     grid-area: day-info;
     display: flex;
     justify-content: space-between;
-    /* gap: min(100px, 1vw); */
 }
 
 .day-params{
@@ -383,7 +379,6 @@ input{
     background-color: rgb(240, 240, 240);
 }
 
-/* invalid fields */
 input:invalid {
   border-color: #900;
   background-color: #fdd;
@@ -393,7 +388,6 @@ input:focus:invalid {
   outline: none;
 }
 
-/* error message styles */
 .error {
   width: 100%;
   padding: 0;
@@ -422,4 +416,67 @@ form{
 label{
     display: flex;
     flex-direction: column;
+}
+
+@media (width <= 1400px){
+    .main{        
+        grid-template-areas: "header header header header"
+                         "left-sidebar search-head search-head right-sidebar"
+                         "left-sidebar temp-main-div icon-main-div right-sidebar"
+                         "left-sidebar cur-day-description cur-day-description right-sidebar"
+                         "left-sidebar day-info day-info right-sidebar"
+                         "left-sidebar day-params next-days right-sidebar"
+                         "left-sidebar sun-live next-days right-sidebar"
+                         "footer footer footer footer";
+        grid-template-rows: 0fr 0.5fr 0.8fr 0.2fr 1.8fr 1.8fr 1.2fr 0fr;
+        grid-template-columns: 0fr 4fr 3fr 0fr;
+    }
+
+    .day-info{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 1%;
+    }
+
+    .day-info > div{
+        height: 6em;
+    }
+
+    .day-params p:first-child{
+        font-size: 1em;
+    }
+
+    .day-params p:last-child{
+        font-size: 2em;
+    }
+
+    .next-days{
+    }
+
+    .sun p{
+        font-size: 1.5em;
+    }
+    
+    .sun img{
+        width: 50%;
+    }
+
+    .weather-icon{
+        width: 70%;
+    }
+
+    .temp-main-div > p{
+        font-size: 2em;
+    }
+    .search-head{
+        display: flex;
+        align-items: end;
+    }
+}
+
+@media (width <= 530px){
+    .main{
+        grid-template-rows: 0fr 0.5fr 0.8fr 0.2fr 2.5fr 1.8fr 1.2fr 0fr;
+
+    }
 }
