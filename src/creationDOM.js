@@ -1,36 +1,38 @@
+const ERROR_MESSAGE = 'City is not found';
+
 import { getHourTime, getMonthDay } from "./date";
 import { getWeatherJSON } from "./recieve_api";
 
-import sunriseURL from "./images/sunrise.svg";
-import sunsetURL from "./images/sunset.svg";
 import rainURL from "./images/rain.gif";
 import humidityURL from "./images/humidity.gif";
 import skyURL from "./images/sky.gif";
 import cloudsURL from "./images/clouds.gif";
 import sunliveURL from "./images/sun_live.jpeg";
+import { handleInput, showServerError } from "./error-handle";
 
 export function createDOM(){
-    const form = document.querySelector('form');
-    submitHandler(form);
+    handleInput();
+    // const form = document.querySelector('form');
+    // submitHandler(form);
 }
 
-function submitHandler(form){
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const city = getInputValue();
-        fillOutDOM(city);
-    });
-}
+// function submitHandler(form){
+//     form.addEventListener('submit', (event) => {
+//         event.preventDefault();
+//         const city = getInputValue();
+//         fillOutDOM(city);
+//     });
+// }
 
-function getInputValue(){
+export function getInputValue(){
     return document.querySelector('input').value;
 }
 
 export async function fillOutDOM(city){
     try {
-        clearDOM();
         const weather = await getWeatherJSON(city);
         console.log(weather);
+        //clearDOM();
         fillMainTemp(weather);
         fillIcon(weather);
         fillDayDescription(weather);
@@ -39,7 +41,7 @@ export async function fillOutDOM(city){
         fillHours(weather);
         fillSunLive(weather);
     } catch(error) {
-        console.log(error);
+        showServerError(ERROR_MESSAGE);
     }
 }
 
@@ -54,6 +56,7 @@ function fillMainTemp(weather){
 
 function fillIcon(weather){
     const iconDiv = document.querySelector('.icon-main-div');
+    clearElement(iconDiv);
     const icon = document.createElement('img');
     icon.className = 'weather-icon';
     icon.src = weather.days[0].icon;
@@ -105,10 +108,15 @@ function fillDayParams(weather){
 
 function fillNextDays(weather){
     const nextDays = document.querySelector('.next-days');
+    clearElement(nextDays);
     weather.days.forEach(day => {
         const dayDiv = createDayDOM(day);
         nextDays.append(dayDiv);
     });
+}
+
+function clearElement(element){
+    element.innerHTML = '';
 }
 
 function createDayDOM(day){
@@ -134,6 +142,7 @@ function createDayDOM(day){
 
 function fillHours(weather){
     const hours = document.querySelector('.day-info');
+    clearElement(hours);
     weather.hours.forEach((hour) => {
         const hourDiv = createHourDOM(hour);
         hours.append(hourDiv);
@@ -166,20 +175,11 @@ function fillSunLive(weather){
     sunriseTitle.textContent = 'Sunrise';
     const sunriseTime = document.querySelector('.sunrise .time');
     sunriseTime.textContent = weather.sun.sunrise;
-    const sunrise = document.createElement('img');
-    sunrise.className = 'sunrise-img';
-    sunrise.src = sunriseURL;
-    sunriseTitle.parentNode.append(sunrise);
-
 
     const sunsetTitle = document.querySelector('.sunset .title');
     sunsetTitle.textContent = 'Sunset';
     const sunsetTime = document.querySelector('.sunset .time');
     sunsetTime.textContent = weather.sun.sunset;
-    const sunset = document.createElement('img');
-    sunset.className = 'sunset-img';
-    sunset.src = sunsetURL;
-    sunsetTitle.parentNode.append(sunset);
 }
 
 function clearDOM(){
@@ -189,7 +189,12 @@ function clearDOM(){
         <div class="right-sidebar"></div>
         <div class="search-head">
             <form action="">
-                <input type="text" id="city" name="city">
+                <p>
+                    <label for="city">
+                        <input type="text" id="city" name="city" required>
+                        <span class="error" aria-live="polite"></span>
+                    </label>
+                </p>
                 <button class="submit">Submit</button>
             </form>
         </div>

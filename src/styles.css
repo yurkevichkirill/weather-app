@@ -270,10 +270,12 @@ p{
 
 #city{
     font-size: 1.5em;
+    height: 20%;
 }
 
 .submit{
     font-size: 1.5em;
+    height: 20%;
 }
 
 .temp-main-div > p {
@@ -378,4 +380,45 @@ input{
     border: none;
     border-radius: 3px;
     background-color: rgb(240, 240, 240);
+}
+
+/* invalid fields */
+input:invalid {
+  border-color: #900;
+  background-color: #fdd;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+
+/* error message styles */
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+form{
+    display: flex;
+    gap: 1%;
+}
+
+.address{
+    height: 2.5em;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
 }

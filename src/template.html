@@ -12,7 +12,12 @@
         <div class="right-sidebar"></div>
         <div class="search-head">
             <form action="">
-                <input type="text" id="city" name="city">
+                <p>
+                    <label for="city">
+                        <input type="text" id="city" name="city" required>
+                        <span class="error" aria-live="polite"></span>
+                    </label>
+                </p>
                 <button class="submit">Submit</button>
             </form>
         </div>
@@ -60,10 +65,12 @@
                 <div class="sunrise">
                     <p class="title"></p>
                     <p class="time"></p>
+                    <img src="images/sunrise.svg" alt="Sunrise" class="sunrise-img">
                 </div>
                 <div class="sunset">
                     <p class="title"></p>
                     <p class="time"></p>
+                    <img src="images/sunset.svg" alt="Sunset" class="sunset-img">
                 </div>
             </div>
             <img src="images/sun_live.jpeg" alt="Sun Live" class="sun-live-img">
