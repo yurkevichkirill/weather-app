@@ -208,3 +208,12 @@ function editCityText(city){
     }
     return city;
 }
+
+export function getCurMetric(){
+    const switchEl = document.querySelector('.switch > input');
+    if(switchEl.value === 'off'){
+        return 'metric';
+    } else {
+        return 'us';
+    }
+}

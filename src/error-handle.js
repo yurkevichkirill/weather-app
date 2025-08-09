@@ -1,4 +1,4 @@
-import { fillOutDOM, getInputValue } from "./creationDOM";
+import { fillOutDOM, getCurMetric, getInputValue } from "./creationDOM";
 
 export function handleInput(){
     const form  = document.querySelector('form');
@@ -26,7 +26,8 @@ export function handleInput(){
         }
         if(form.checkValidity()){
             const city = getInputValue()
-            fillOutDOM(city);
+            const metric = getCurMetric();
+            fillOutDOM(city, metric);
         }
     });
 
