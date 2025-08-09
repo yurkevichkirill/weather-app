@@ -217,3 +217,12 @@ export function getCurMetric(){
         return 'us';
     }
 }
+
+export function switchLoading(){
+    const loading = document.querySelector('#loadingIndicator');
+    if(loading.classList.contains('loading-true')){
+        loading.classList.remove('loading-true');
+    } else {
+        loading.classList.add('loading-true');
+    }
+}
