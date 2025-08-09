@@ -454,7 +454,7 @@ label{
     }
     
     .sun img{
-        width: 50%;
+        width: 30%;
     }
 
     .weather-icon{
@@ -470,7 +470,7 @@ label{
     }
 }
 
-@media (width <= 530px){
+@media (width <= 560px){
     .main{
         grid-template-rows: 0fr 0.5fr 0.8fr 0.2fr 2.5fr 1.8fr 1.2fr 0fr;
     }
