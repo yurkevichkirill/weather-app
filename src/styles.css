@@ -409,10 +409,6 @@ form{
     gap: 1%;
 }
 
-/* .address{
-    height: 2.5em;
-} */
-
 label{
     display: flex;
     flex-direction: column;
