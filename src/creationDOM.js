@@ -8,11 +8,11 @@ import { handleInput, showServerError } from "./error-handle";
 
 export function createDOM(){
     handleInput();
-    handleToggle()
+    handleToggle();
 }
 
 export function getInputValue(){
-    return document.querySelector('input').value;
+    return document.querySelector('#city').value;
 }
 
 export async function fillOutDOM(city = DEFAULT_CITY, unit = DEFAULT_UNIT){
@@ -27,13 +27,13 @@ export async function fillOutDOM(city = DEFAULT_CITY, unit = DEFAULT_UNIT){
         fillHours(weather);
         fillSunLive(weather);
     } catch(error) {
-        createErrorScreen();
+        showServerError(ERROR_MESSAGE);
     }
 }
 
 function fillMainTemp(weather){
     const address = document.querySelector('.address');
-    address.textContent = weather.address;
+    address.textContent = editCityText(weather.address);
     const temp = document.querySelector('.temp');
     temp.textContent = `${weather.current.temp}°`;
     const conditions = document.querySelector('.conditions');    
@@ -200,4 +200,11 @@ function switchMetricColor(){
     } else {
         metric.classList.add('green');
     }
+}
+
+function editCityText(city){
+    if(city.search(',') !== -1){
+        city = city.slice(0, city.indexOf(','));
+    }
+    return city;
 }
