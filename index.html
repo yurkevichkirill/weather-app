@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="spinner"></div>
+    </div> 
+    <div class="main">
+        <div class="header"></div>
+        <div class="left-sidebar"></div>
+        <div class="right-sidebar"></div>
+        <div class="search-head">
+            <div class="toggle">
+                <div class="units">
+                    <p class="us">US (°F, miles)</p>
+                    <p class="metric green">Metric (°C, km)</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <form action="">
+                <p>
+                    <label for="city">
+                        <input type="text" id="city" name="city" required>
+                        <span class="error" aria-live="polite"></span>
+                    </label>
+                </p>
+                <button class="submit">Submit</button>
+            </form>
+        </div>
+        <div class="temp-main-div">
+            <p class="address"></p>
+            <p class="temp"></p>
+            <p class="conditions"></0>
+        </div>
+        <div class="icon-main-div"></div>
+        <div class="cur-day-description"></div>
+        <div class="day-info"></div>
+        <div class="day-params">
+            <div class="dew-full">
+                <div class="dew">
+                    <p class="dew-name"></p>
+                    <p class="dew-val"></p>
+                </div>
+                <img src="9db8a023f4f31c5ddce5.gif" alt="Dew" class="dew-img">
+            </div>
+            <div class="humidity-full">
+                <div class="humidity">
+                    <p class="humidity-name"></p>
+                    <p class="humidity-val"></p>
+                </div>
+                <img src="e157fa5e9cf9c9c0fce2.gif" alt="Humidity" class="humidity-img">
+            </div>
+            <div class="pressure-full">
+                <div class="pressure">
+                    <p class="pressure-name"></p>
+                    <p class="pressure-val"></p>
+                </div>
+                <img src="f3a0fa43b78581207ba5.gif" alt="Pressure" class="pressure-img">
+            </div>
+            <div class="cloudcover-full">
+                <div class="cloudcover">
+                    <p class="cloudcover-name"></p>
+                    <p class="cloudcover-val"></p>
+                </div>
+                <img src="4afab8ab8879762204f1.gif" alt="Cloudcover" class="cloudcover-img">
+            </div>
+        </div>
+        <div class="next-days"></div>
+        <div class="sun-live">
+            <div class="sun">
+                <div class="sunrise">
+                    <p class="title"></p>
+                    <p class="time"></p>
+                    <img src="e9d849bdc856ce981f9d.svg" alt="Sunrise" class="sunrise-img">
+                </div>
+                <div class="sunset">
+                    <p class="title"></p>
+                    <p class="time"></p>
+                    <img src="a9940e6f6dd8d24c3ef5.svg" alt="Sunset" class="sunset-img">
+                </div>
+            </div>
+            <img src="f1cc6c6de0858aa8b86b.jpeg" alt="Sun Live" class="sun-live-img">
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
